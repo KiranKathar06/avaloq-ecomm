@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { auth } from "./Firebase";
 import { toast } from "react-toastify";
 import SignInWithGoogle from "./SignInWithGoogle";
+import Navbar from "./Navbar";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(""); // State for email error message
   const navigate = useNavigate();
+
 
   const handleEmailChange = (e) => {
     const newEmail = e.target.value;
@@ -38,33 +38,19 @@ const Login = () => {
       return;
     }
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      sessionStorage.setItem("authenticatedUser",email);
-  
-      console.log('User logged in successfully');
-      toast.success("Logged in Successfully!", {
-        position: "top-center",
-      });
-      navigate("/home");
-    } catch (error) {
-      toast.error(error.message, {
-        position: "bottom-center",
-      });
-      console.error("Error logging in", error);
-    }
+    // Simulate successful login by storing user info in session storage
+    sessionStorage.setItem('user', JSON.stringify({ email }));
+    // Redirect to home page or another page after login
+    navigate('/home');
   };
 
   return (
+    <>
+    <Navbar></Navbar>
     <div>
-        <nav className="navbar navbar-dark bg-primary">
-      <div className="container">
-        <a className="navbar-brand" href="#">AvaloqEcomm</a>
-      </div>
-    </nav>
     <div className="container my-5">
       <div className="row justify-content-center">
-        <div className="col-md-6">
+        <div className="col-md-4">
           <div className="card shadow p-3 mb-5 bg-body rounded">
             <div className="card-body">
               <h2 className="card-title text-center mb-4">Login</h2>
@@ -115,6 +101,7 @@ const Login = () => {
       </div>
     </div>
     </div>
+    </>
   );
 };
 
