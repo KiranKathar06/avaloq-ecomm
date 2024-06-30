@@ -5,6 +5,7 @@ import { auth, db } from "./Firebase";
 import { setDoc, doc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import SignInWithGoogle from "./SignInWithGoogle";
+import Navbar from "./Navbar";
 
 const SignUp = () => {
   const [fname, setFname] = useState("");
@@ -140,9 +141,11 @@ const SignUp = () => {
   };
 
   return (
+    <>
+    <Navbar></Navbar>
     <div className="container my-5">
       <div className="row justify-content-center">
-        <div className="col-md-6">
+        <div className="col-md-4">
           <div className="card shadow p-3 mb-5 bg-body rounded">
             <div className="card-body">
               <h2 className="card-title text-center mb-4">Signup</h2>
@@ -229,6 +232,7 @@ const SignUp = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
