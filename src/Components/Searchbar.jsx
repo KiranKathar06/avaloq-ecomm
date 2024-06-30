@@ -24,12 +24,14 @@ const SearchBar = ({products,setFilteredProducts}) => {
     // </div>
      <div class="row no-gutters mt-3  align-items-center">
     
-         <input class="form-control border-secondary rounded-pill pr-5" type="search"  value={searchTerm}
+         <input class="form-control border-secondary rounded-pill pr-5" type="search"  value={searchTerm} placeholder='Search the product'
          onChange={handleSearch}id="example-search-input2"/>
+           <i class="bi bi-search"></i>
           
      <div class="col-auto">
          <button class="btn btn-outline-light text-dark border-0 rounded-pill ml-n5" type="button">
              {/* <i class="fa fa-search"></i> */}
+             <i class="bi bi-search"></i>
              {/* <span class="glyphicon glyphicon-search"></span> */}
           
 
