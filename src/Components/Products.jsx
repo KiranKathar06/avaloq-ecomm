@@ -22,7 +22,7 @@ const Products = () => {
       const apiData = await axios.get("https://dummyjson.com/products");
       const fetchedProducts = apiData.data.products;
       setProducts(fetchedProducts);
-      setFilteredProducts(fetchedProducts); // Initialize filtered products with all products
+      setFilteredProducts(fetchedProducts);
     } catch (error) {
       console.log("Error fetching products:", error);
     }
@@ -113,5 +113,5 @@ const Products = () => {
     </>
   );
 };
-//export const products = products;
+
 export default Products;
