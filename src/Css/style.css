@@ -1,0 +1,14 @@
+.productContainer {
+    display: flex;
+    flex-direction: column;
+    width: 78%;
+    padding: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .products {
+    width: 20%;
+    margin: 10px;
+  }
+  
