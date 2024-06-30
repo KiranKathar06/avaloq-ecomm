@@ -10,7 +10,6 @@ const Login = () => {
   const [emailError, setEmailError] = useState(""); // State for email error message
   const navigate = useNavigate();
 
-
   const handleEmailChange = (e) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
@@ -93,7 +92,6 @@ const Login = () => {
                   New user <a href="/signup">Register Here</a>
                 </p>
               </form>
-
               <SignInWithGoogle />
             </div>
           </div>

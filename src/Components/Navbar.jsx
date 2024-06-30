@@ -6,10 +6,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const isLoggedIn = sessionStorage.getItem('user');
 
-  const handleCart = () => {
-    navigate('/cart');
-  };
-
   const handleLogout = async () => {
     try {
       await auth.signOut();
