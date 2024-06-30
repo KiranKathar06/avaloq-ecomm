@@ -29,21 +29,22 @@ const Products = () => {
       <Searchbar products={products} setFilteredProducts={setFilteredProducts} />
 
       <div className="container mt-5">
-        <div className="row">
-          {filteredProducts.map((data) => (
-            <div key={data.id} className="col-md-4 mb-4">
-              <Card className="h-100">
-                <Card.Img variant="top" src={data.images[0]} alt={data.title} />
-                <Card.Body>
-                  <Card.Title>{data.title}</Card.Title>
-                  <Card.Text>${data.price}</Card.Text>
-                  <button className="btn btn-primary" >Add to cart</button>
-                </Card.Body>
-              </Card>
-            </div>
-          ))}
+  <div className="row">
+    {filteredProducts.map((data) => (
+      <div key={data.id} className="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div className="card h-100">
+          <img className="card-img-top img-fluid" src={data.images[0]} alt={data.title} style={{ height: '200px', objectFit: 'cover' }} />
+          <div className="card-body d-flex flex-column">
+            <h5 className="card-title">{data.title}</h5>
+            <p className="card-text">${data.price}</p>
+            <button className="btn btn-primary mt-auto">Add to cart</button>
+          </div>
         </div>
       </div>
+    ))}
+  </div>
+</div>
+
     </>
   );
 };
