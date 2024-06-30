@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { auth,db } from "./Firebase";
 import { setDoc, doc } from "firebase/firestore";
 import { toast } from "react-toastify";
+import SignInWithGoogle from "./SignInWithGoogle";
 
 const SignUp = () => {
   const [fname, setFname] = useState("");
@@ -17,7 +18,7 @@ const SignUp = () => {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
        const user = userCredential.user;
-       console.log('User Registre succeefully',user);
+       console.log('User Register succeefully',user);
        if (user) {
          setDoc(doc(db, "Users", user.uid), {
           email: user.email,
@@ -98,6 +99,8 @@ const SignUp = () => {
                   </button>
                 </div>
               </form>
+
+              <SignInWithGoogle/>
             </div>
           </div>
         </div>

@@ -18,7 +18,7 @@ const Login = () => {
       toast.success("User Registered Successfully!!", {
         position: "top-center",
       });
-      navigate("/products");
+      navigate("/home");
     } catch (error) {
       toast.error(error.message, {
         position: "bottom-center",
