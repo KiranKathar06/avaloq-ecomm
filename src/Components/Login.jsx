@@ -8,14 +8,40 @@ import SignInWithGoogle from "./SignInWithGoogle";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState(""); // State for email error message
   const navigate = useNavigate();
+
+  const handleEmailChange = (e) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+
+    // Email format validation
+    const emailRegex = /\S+@\S+\.\S+/;
+
+    if (!newEmail) {
+      setEmailError("Email is required");
+    } else if (!emailRegex.test(newEmail)) {
+      setEmailError("Enter a valid email address (e.g., example@example.com)");
+    } else {
+      setEmailError("");
+    }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    // Check if email and password are filled and email format is valid
+    if (!email || !password || emailError) {
+      toast.error("Please fill all fields correctly!", {
+        position: "bottom-center",
+      });
+      return;
+    }
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log('User Register succeefully');
-      toast.success("User Registered Successfully!!", {
+      console.log('User logged in successfully');
+      toast.success("Logged in Successfully!", {
         position: "top-center",
       });
       navigate("/home");
@@ -40,25 +66,32 @@ const Login = () => {
                     type="email"
                     className="form-control"
                     id="email"
-                    placeholder='Enter email'
+                    placeholder="Enter email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={handleEmailChange}
                     required
                   />
+                  {emailError && (
+                    <div style={{ color: "red" }}>{emailError}</div>
+                  )}
                 </div>
                 <div className="mb-3">
                   <input
                     type="password"
                     className="form-control"
                     id="password"
-                    placeholder='Enter password'
+                    placeholder="Enter password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
                 </div>
                 <div className="d-grid">
-                  <button type="submit" className="btn btn-primary btn-block">
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-block"
+                    disabled={!email || !password || emailError}
+                  >
                     Login
                   </button>
                 </div>
@@ -67,7 +100,7 @@ const Login = () => {
                 </p>
               </form>
 
-              <SignInWithGoogle/>
+              <SignInWithGoogle />
             </div>
           </div>
         </div>
