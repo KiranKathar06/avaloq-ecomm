@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import SignInWithGoogle from "./SignInWithGoogle";
 import Navbar from "./Navbar";
@@ -89,7 +89,7 @@ const Login = () => {
                       </button>
                     </div>
                     <p className="forgot-password text-right">
-                      New user <a href="/signup">Register Here</a>
+                      New user <Link to="/signup">Register Here</Link>
                     </p>
                   </form>
                   <SignInWithGoogle />
