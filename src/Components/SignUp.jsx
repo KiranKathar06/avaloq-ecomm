@@ -12,23 +12,21 @@ const SignUp = () => {
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(""); // State for password error message
-  const [fnameError, setFnameError] = useState(""); // State for first name error message
-  const [lnameError, setLnameError] = useState(""); // State for last name error message
-  const [emailError, setEmailError] = useState(""); // State for email error message
+  const [passwordError, setPasswordError] = useState("");
+  const [fnameError, setFnameError] = useState("");
+  const [lnameError, setLnameError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const navigate = useNavigate();
 
   const handleFnameChange = (e) => {
     const newFname = e.target.value;
     setFname(newFname);
 
-    // Regular expression to check for numbers
     const numbers = /\d/;
 
     if (numbers.test(newFname)) {
       setFnameError("First name should not contain numbers!");
-    } else 
-    if (!newFname) {
+    } else if (!newFname) {
       setFnameError("First name is required");
     } else {
       setFnameError("");
@@ -38,10 +36,9 @@ const SignUp = () => {
   const handleLnameChange = (e) => {
     const newLname = e.target.value;
     setLname(newLname);
-  
-    // Regular expression to check for numbers
+
     const numbers = /\d/;
-  
+
     if (numbers.test(newLname)) {
       setLnameError("Last name should not contain numbers!");
     } else if (!newLname) {
@@ -50,13 +47,11 @@ const SignUp = () => {
       setLnameError("");
     }
   };
-  
 
   const handleEmailChange = (e) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
 
-    // Basic email format validation
     if (!newEmail) {
       setEmailError("Email is required");
     } else if (!newEmail.includes("@") || !newEmail.endsWith("@gmail.com")) {
@@ -70,7 +65,6 @@ const SignUp = () => {
     const newPassword = e.target.value;
     setPassword(newPassword);
 
-    // Regular expressions to validate password
     const lowerCase = /[a-z]/g;
     const upperCase = /[A-Z]/g;
     const numbers = /[0-9]/g;
@@ -84,14 +78,13 @@ const SignUp = () => {
     } else if (newPassword.length < 10) {
       setPasswordError("Password should be at least 10 characters long.");
     } else {
-      setPasswordError(""); // Password is valid
+      setPasswordError("");
     }
   };
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    // Check if all fields are filled and valid before proceeding
     if (
       !fname ||
       !lname ||
@@ -124,8 +117,8 @@ const SignUp = () => {
           lastName: lname,
         });
       }
-      
-      sessionStorage.setItem("authenticatedUser", );
+
+      sessionStorage.setItem("authenticatedUser");
       toast.success("User Registered Successfully!!", {
         position: "top-center",
       });
@@ -142,96 +135,96 @@ const SignUp = () => {
 
   return (
     <>
-    <Navbar></Navbar>
-    <div className="container my-5">
-      <div className="row justify-content-center">
-        <div className="col-md-4">
-          <div className="card shadow p-3 mb-5 bg-body rounded">
-            <div className="card-body">
-              <h2 className="card-title text-center mb-4">Signup</h2>
-              <form onSubmit={handleSignup}>
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="fname"
-                    placeholder="Enter first name"
-                    value={fname}
-                    onChange={handleFnameChange}
-                    required
-                  />
-                  {fnameError && (
-                    <div style={{ color: "red" }}>{fnameError}</div>
-                  )}
-                </div>
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="lname"
-                    placeholder="Enter last name"
-                    value={lname}
-                    onChange={handleLnameChange}
-                    required
-                  />
-                  {lnameError && (
-                    <div style={{ color: "red" }}>{lnameError}</div>
-                  )}
-                </div>
-                <div className="mb-3">
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    placeholder="Enter email"
-                    value={email}
-                    onChange={handleEmailChange}
-                    required
-                  />
-                  {emailError && (
-                    <div style={{ color: "red" }}>{emailError}</div>
-                  )}
-                </div>
-                <div className="mb-3">
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    placeholder="Enter password"
-                    value={password}
-                    onChange={handlePasswordChange}
-                    required
-                  />
-                  {passwordError && (
-                    <div style={{ color: "red" }}>{passwordError}</div>
-                  )}
-                </div>
-                <div className="d-grid">
-                  <button
-                    type="submit"
-                    className="btn btn-primary btn-block"
-                    disabled={
-                      !fname ||
-                      !lname ||
-                      !email ||
-                      !password ||
-                      passwordError ||
-                      fnameError ||
-                      lnameError ||
-                      emailError
-                    }
-                  >
-                    Signup
-                  </button>
-                </div>
-              </form>
+      <Navbar></Navbar>
+      <div className="container my-5">
+        <div className="row justify-content-center">
+          <div className="col-md-4">
+            <div className="card shadow p-3 mb-5 bg-body rounded">
+              <div className="card-body">
+                <h2 className="card-title text-center mb-4">Signup</h2>
+                <form onSubmit={handleSignup}>
+                  <div className="mb-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="fname"
+                      placeholder="Enter first name"
+                      value={fname}
+                      onChange={handleFnameChange}
+                      required
+                    />
+                    {fnameError && (
+                      <div style={{ color: "red" }}>{fnameError}</div>
+                    )}
+                  </div>
+                  <div className="mb-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="lname"
+                      placeholder="Enter last name"
+                      value={lname}
+                      onChange={handleLnameChange}
+                      required
+                    />
+                    {lnameError && (
+                      <div style={{ color: "red" }}>{lnameError}</div>
+                    )}
+                  </div>
+                  <div className="mb-3">
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="email"
+                      placeholder="Enter email"
+                      value={email}
+                      onChange={handleEmailChange}
+                      required
+                    />
+                    {emailError && (
+                      <div style={{ color: "red" }}>{emailError}</div>
+                    )}
+                  </div>
+                  <div className="mb-3">
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="password"
+                      placeholder="Enter password"
+                      value={password}
+                      onChange={handlePasswordChange}
+                      required
+                    />
+                    {passwordError && (
+                      <div style={{ color: "red" }}>{passwordError}</div>
+                    )}
+                  </div>
+                  <div className="d-grid">
+                    <button
+                      type="submit"
+                      className="btn btn-primary btn-block"
+                      disabled={
+                        !fname ||
+                        !lname ||
+                        !email ||
+                        !password ||
+                        passwordError ||
+                        fnameError ||
+                        lnameError ||
+                        emailError
+                      }
+                    >
+                      Signup
+                    </button>
+                  </div>
+                </form>
 
-              <SignInWithGoogle />
+                <SignInWithGoogle />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 };
