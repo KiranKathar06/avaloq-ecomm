@@ -40,6 +40,8 @@ const Login = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      sessionStorage.setItem("authenticatedUser",email);
+  
       console.log('User logged in successfully');
       toast.success("Logged in Successfully!", {
         position: "top-center",
@@ -54,6 +56,12 @@ const Login = () => {
   };
 
   return (
+    <div>
+        <nav className="navbar navbar-dark bg-primary">
+      <div className="container">
+        <a className="navbar-brand" href="#">AvaloqEcomm</a>
+      </div>
+    </nav>
     <div className="container my-5">
       <div className="row justify-content-center">
         <div className="col-md-6">
@@ -105,6 +113,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

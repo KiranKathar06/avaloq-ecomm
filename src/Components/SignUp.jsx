@@ -123,7 +123,8 @@ const SignUp = () => {
           lastName: lname,
         });
       }
-
+      
+      sessionStorage.setItem("authenticatedUser", );
       toast.success("User Registered Successfully!!", {
         position: "top-center",
       });
