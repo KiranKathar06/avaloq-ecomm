@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-const SearchBar = ({products,setFilteredProducts}) => {
+const SearchBar = ({ products, setFilteredProducts }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (e) => {
@@ -14,32 +14,23 @@ const SearchBar = ({products,setFilteredProducts}) => {
   };
 
   return (
-    // <div className="search-bar rounded-3 pb-5">
-    //   <input
-    //     type="text"
-    //     placeholder="Search products..."
-    //     value={searchTerm}
-    //     onChange={handleSearch}
-    //   />
-    // </div>
-     <div class="row no-gutters mt-3  align-items-center">
-    
-         <input class="form-control border-secondary rounded-pill pr-5" type="search"  value={searchTerm} placeholder='Search the product'
-         onChange={handleSearch}id="example-search-input2"/>
-           <i class="bi bi-search"></i>
-          
-     <div class="col-auto">
-         <button class="btn btn-outline-light text-dark border-0 rounded-pill ml-n5" type="button">
-             {/* <i class="fa fa-search"></i> */}
-             <i class="bi bi-search"></i>
-             {/* <span class="glyphicon glyphicon-search"></span> */}
-          
+    <div class="relative flex items-center mt-3">
+      <input class="w-full border border-gray-300 rounded-full py-2 px-4 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        type="search"
+        value={searchTerm}
+        placeholder='Search the product'
+        onChange={handleSearch}
+        id="example-search-input2"
+        style={{
+          backgroundImage: `url(${require("../assets/searchIcon.png")})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'right 1rem center',
+          backgroundSize: '1.5rem'
+        }} />
+    </div>
 
-         </button>
-     </div>
- </div>
-    
-    
+
+
   );
 };
 

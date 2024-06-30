@@ -11,6 +11,7 @@ const SignInWithGoogle = () => {
         signInWithPopup(auth, provider).then(async (result) => {
           console.log(result);
           const user = result.user;
+          sessionStorage.setItem('user', JSON.stringify({ user }));
           if (result.user) {
             await setDoc(doc(db, "Users", user.uid), {
               email: user.email,
