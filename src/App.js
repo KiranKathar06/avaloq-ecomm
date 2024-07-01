@@ -1,7 +1,7 @@
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import { Helmet } from "react-helmet"
 import { ToastContainer } from "react-toastify";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
@@ -12,6 +12,9 @@ import Home from "./Components/Home";
 function App() {
   return (
     <div className="App">
+      <Helmet>
+        <title>Kiran-Ecomm</title>
+      </Helmet>
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
