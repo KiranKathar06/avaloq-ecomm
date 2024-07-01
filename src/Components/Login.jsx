@@ -3,6 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import SignInWithGoogle from "./SignInWithGoogle";
 import Navbar from "./Navbar";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./Firebase";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -32,15 +34,29 @@ const Login = () => {
     // Check if email and password are filled and email format is valid
     if (!email || !password || emailError) {
       toast.error("Please fill all fields correctly!", {
-        position: "bottom-center",
+        position: "top-center",
       });
       return;
     }
-
-    // Simulate successful login by storing user info in session storage
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("User logged in Successfully");
+       // Simulate successful login by storing user info in session storage
     sessionStorage.setItem("user", JSON.stringify({ email }));
     // Redirect to home page or another page after login
     navigate("/home");
+      toast.success("User logged in Successfully", {
+        position: "top-center",
+      });
+    } catch (error) {
+      console.log(error.message);
+
+      toast.error('Incorrect passowrd', {
+        position: "top-center",
+      });
+    }
+
+   
   };
 
   return (
@@ -62,7 +78,6 @@ const Login = () => {
                         placeholder="Enter email"
                         value={email}
                         onChange={handleEmailChange}
-                        required
                       />
                       {emailError && (
                         <div style={{ color: "red" }}>{emailError}</div>
@@ -76,14 +91,12 @@ const Login = () => {
                         placeholder="Enter password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        required
                       />
                     </div>
                     <div className="d-grid">
                       <button
                         type="submit"
                         className="btn btn-primary btn-block"
-                        disabled={!email || !password || emailError}
                       >
                         Login
                       </button>
