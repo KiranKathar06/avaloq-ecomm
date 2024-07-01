@@ -12,7 +12,9 @@ const SignUp = () => {
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [fnameError, setFnameError] = useState("");
   const [lnameError, setLnameError] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -82,21 +84,34 @@ const SignUp = () => {
     }
   };
 
+  const handleConfirmPasswordChange = (e) => {
+    const newConfirmPassword = e.target.value;
+    setConfirmPassword(newConfirmPassword);
+
+    if (newConfirmPassword !== password) {
+      setConfirmPasswordError("Passwords do not match!");
+    } else {
+      setConfirmPasswordError("");
+    }
+  };
+
   const handleSignup = async (e) => {
     e.preventDefault();
 
     if (
       !fname ||
-      !lname ||
+      !lname || 
       !email ||
       !password ||
+      !confirmPassword ||
       passwordError ||
+      confirmPasswordError ||
       fnameError ||
       lnameError ||
       emailError
     ) {
       toast.error("Please fill all fields correctly!", {
-        position: "bottom-center",
+        position: "top-center",
       });
       return;
     }
@@ -150,7 +165,6 @@ const SignUp = () => {
                       placeholder="Enter first name"
                       value={fname}
                       onChange={handleFnameChange}
-                      required
                     />
                     {fnameError && (
                       <div style={{ color: "red" }}>{fnameError}</div>
@@ -164,7 +178,6 @@ const SignUp = () => {
                       placeholder="Enter last name"
                       value={lname}
                       onChange={handleLnameChange}
-                      required
                     />
                     {lnameError && (
                       <div style={{ color: "red" }}>{lnameError}</div>
@@ -178,7 +191,6 @@ const SignUp = () => {
                       placeholder="Enter email"
                       value={email}
                       onChange={handleEmailChange}
-                      required
                     />
                     {emailError && (
                       <div style={{ color: "red" }}>{emailError}</div>
@@ -192,26 +204,29 @@ const SignUp = () => {
                       placeholder="Enter password"
                       value={password}
                       onChange={handlePasswordChange}
-                      required
                     />
                     {passwordError && (
                       <div style={{ color: "red" }}>{passwordError}</div>
                     )}
                   </div>
+                  <div className="mb-3">
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="confirm-password"
+                      placeholder="Confirm password"
+                      value={confirmPassword}
+                      onChange={handleConfirmPasswordChange}
+                    />
+                    {confirmPasswordError && (
+                      <div style={{ color: "red" }}>{confirmPasswordError}</div>
+                    )}
+                  </div>
+                  
                   <div className="d-grid">
                     <button
                       type="submit"
                       className="btn btn-primary btn-block"
-                      disabled={
-                        !fname ||
-                        !lname ||
-                        !email ||
-                        !password ||
-                        passwordError ||
-                        fnameError ||
-                        lnameError ||
-                        emailError
-                      }
                     >
                       Signup
                     </button>

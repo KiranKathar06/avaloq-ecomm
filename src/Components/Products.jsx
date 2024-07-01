@@ -89,7 +89,7 @@ const Products = () => {
       </div>
       <div className="container mt-5">
         <div className="row">
-          {filteredProducts.map((data) => (
+          {filteredProducts.length === 0 ? <h1>Record not found</h1> : filteredProducts.map((data) => (
             <div key={data.id} className="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div className="card h-100">
                 <img
