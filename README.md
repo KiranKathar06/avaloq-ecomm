@@ -25,7 +25,7 @@ This is a simple e-commerce website developed using React. The application inclu
 - `Header`: Navigation header
 - `Home`: Home page
 
-## Future Work
+## Future Scope
 - Implement cart functionality
 - Integrate payment gateway
 - Add additional features (e.g., product details, reviews, profile)
